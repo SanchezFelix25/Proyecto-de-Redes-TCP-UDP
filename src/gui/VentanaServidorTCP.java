@@ -52,11 +52,17 @@ public class VentanaServidorTCP extends JFrame {
                 new InputStreamReader(cliente.getInputStream()));
             PrintWriter salida = new PrintWriter(cliente.getOutputStream(), true)
         ) {
+            //Leer el nombre 
+            String nombre = entrada.readLine();
+            area.append("Usuario conectado: " + nombre+"\n");
+            
             salida.println("Conectado al servidor TCP");
 
             String mensaje;
+            
+            //Despues de Leer mesnajes
             while ((mensaje = entrada.readLine()) != null) {
-                area.append("Cliente: " + mensaje + "\n");
+                area.append(nombre + ": " + mensaje + "\n");
             }
 
         } catch (Exception e) {
